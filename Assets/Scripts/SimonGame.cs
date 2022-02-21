@@ -12,16 +12,24 @@ public class SimonGame : MonoBehaviour
 
     private float t;
     private int randomBtn;
-    private int lastRandomBtn=4;
+    private int lastRandomBtn = 4;
 
-    private List<int> simonSequance= new List<int>();
+    private List<int> simonSequance = new List<int>();
     private int[] simonSequenceArray;
     [SerializeField] PlayerInput input;
     private int[] playerInputArray;
 
-    public event Action onWinCondition;
-    public event Action onLoseCondition;
+    public event Action<string> onEndGameCondition;
 
+    public bool isFinished;
+    public void SetSimonGame(float speed,int amount)
+    {
+        _speed = speed;
+        _amount = amount;
+        isFinished = false;
+        simonSequance.Clear();
+
+    }
     void Update()
     {
         GenerateGame(_speed, _amount);
@@ -29,14 +37,17 @@ public class SimonGame : MonoBehaviour
         {
             simonSequenceArray = simonSequance.ToArray();
             playerInputArray = input.GetArray();
-            if (playerInputArray.Length>= simonSequenceArray.Length)
+            if (playerInputArray.Length >= simonSequenceArray.Length)
             {
                 if (CheckIfWin() == true)
-                    onWinCondition?.Invoke();
+                    onEndGameCondition?.Invoke("Win");
                 else
-                    onLoseCondition?.Invoke();
+                    onEndGameCondition?.Invoke("Lose");
+                isFinished = true;
             }
         }
+        else
+            isFinished = false;
     }
 
     private bool CheckIfWin()
@@ -52,6 +63,10 @@ public class SimonGame : MonoBehaviour
 
     private void GenerateGame(float speed, int amount)
     {
+        if(!isFinished)
+        {
+
+     
         if (t < _speed)
         {
             t += Time.deltaTime;
@@ -79,5 +94,7 @@ public class SimonGame : MonoBehaviour
                 }
             }
         }
+        }
     }
+
 }

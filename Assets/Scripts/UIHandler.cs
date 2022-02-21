@@ -7,27 +7,40 @@ public class UIHandler : MonoBehaviour
 {
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject loseScreen;
+    [SerializeField] private GameObject storeScreen;
 
     [SerializeField] private SimonGame game;
+    [SerializeField] private SimonLevelConstructor gameMananger;
     // Start is called before the first frame update
     void Start()
     {
-        game.onWinCondition += WinUI;
-        game.onLoseCondition += LostUI;
-        
+        game.onEndGameCondition += ShowUI;
+        gameMananger.onLevelEnd += EndLevelScreenShow;
     }
 
-    private void WinUI()
+    private void EndLevelScreenShow()
     {
-        winScreen.SetActive(true);
-    }private void LostUI()
+        storeScreen.SetActive(true);
+    } public void EndLevelScreenHide()
     {
-        loseScreen.SetActive(true);
+        Debug.Log("meow");
+        storeScreen.SetActive(false);
+    }
+    private void ShowUI(string condition)
+    {
+        if (condition == "Win")
+            winScreen.SetActive(true);
+        else if (condition == "Lose")
+            loseScreen.SetActive(true);
+
+        StartCoroutine(ResetScreen());
     }
 
-    // Update is called once per frame
-    void Update()
+   IEnumerator ResetScreen()
     {
-        
+        yield return new WaitForSeconds(1f);
+        winScreen.SetActive(false);
+        loseScreen.SetActive(false);
+
     }
 }
