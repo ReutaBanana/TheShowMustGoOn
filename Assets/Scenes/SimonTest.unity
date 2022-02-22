@@ -354,7 +354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ticketPrice: 5
   famePerShow: 6
-  game: {fileID: 1451809527}
+  currentGame: {fileID: 0}
   gameMananger: {fileID: 148356373}
 --- !u!1 &161017553
 GameObject:
@@ -1848,8 +1848,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a88f054c70a54a74394f4e53607b41db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
-  _amount: 3
   colors:
   - {fileID: 1546786856}
   - {fileID: 1968015264}
