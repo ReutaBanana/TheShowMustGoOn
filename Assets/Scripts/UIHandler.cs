@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIHandler : MonoBehaviour
 {
@@ -9,21 +10,30 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private GameObject loseScreen;
     [SerializeField] private GameObject storeScreen;
 
+    [SerializeField] private Text _famePointsText;
+    [SerializeField] private Text _moneyText;
+
     [SerializeField] private SimonGame game;
-    [SerializeField] private SimonLevelConstructor gameMananger;
+    [SerializeField] private GameConstructor gameMananger;
+    [SerializeField] private PlayerStats stats;
     // Start is called before the first frame update
     void Start()
     {
         game.onEndGameCondition += ShowUI;
-        gameMananger.onLevelEnd += EndLevelScreenShow;
+        gameMananger.onShowEnd += EndLevelScreenShow;
     }
-
+    private void Update()
+    {
+        _moneyText.text = ("Money Amount: " + stats.GetMoney());
+        _famePointsText.text = ("Fame: " + stats.GetFamePoints());
+    }
     private void EndLevelScreenShow()
     {
+       
         storeScreen.SetActive(true);
+
     } public void EndLevelScreenHide()
     {
-        Debug.Log("meow");
         storeScreen.SetActive(false);
     }
     private void ShowUI(string condition)

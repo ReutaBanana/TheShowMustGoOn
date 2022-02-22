@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _simonSpeedPerSequence:
   - 1
-  - 1.5
-  _simonAmountPerSequence: 0200000003000000
+  - 1
+  _simonAmountPerSequence: 0100000003000000

@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class SimonGame : MonoBehaviour
 {
-    [SerializeField] private float _speed = 1;
-    [SerializeField] private int _amount = 3;
+     private float _speed = 1;
+     private int _amount = 3;
 
     [SerializeField] private ColorChanger[] colors;
 
@@ -16,6 +16,7 @@ public class SimonGame : MonoBehaviour
 
     private List<int> simonSequance = new List<int>();
     private int[] simonSequenceArray;
+
     [SerializeField] PlayerInput input;
     private int[] playerInputArray;
 
