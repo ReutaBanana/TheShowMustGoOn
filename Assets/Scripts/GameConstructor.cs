@@ -18,24 +18,25 @@ public class GameConstructor : MonoBehaviour
 
     void Start()
     {
+        ConstructSimonGames("Win");
         currentSequenceAmount = shows[currentShow]._simonAmountPerSequence.Length;
         currentGame.onEndGameCondition += ConstructSimonGames;
     }
 
     public void ConstructSimonGames(string condition)
     {
-        if(currentShow<=shows.Length)
+        if(currentShow<shows.Length)
         {
             currentSequenceAmount = shows[currentShow]._simonAmountPerSequence.Length;
             if (currentSequenceNumber < currentSequenceAmount)
             {
-                currentGame.SetSimonGame(shows[currentShow]._simonSpeedPerSequence[currentSequenceNumber], shows[currentShow]._simonAmountPerSequence[currentSequenceNumber]);
+                currentGame.SetSimonGame(shows[currentShow]._simonSpeedPerSequence, shows[currentShow]._simonAmountPerSequence[currentSequenceNumber]);
                 currentSequenceNumber++;
             }
             else
             {
-                onShowEnd?.Invoke();
                 currentShow++;
+                onShowEnd?.Invoke();
                 currentSequenceNumber = 0;
             }
             //add show 
@@ -44,5 +45,15 @@ public class GameConstructor : MonoBehaviour
         {
             Debug.Log("no more games");
         }
+    }
+
+    public int GetShowSequenceAmount()
+    {
+        if(currentShow<shows.Length)
+        {
+            return shows[currentShow]._simonAmountPerSequence.Length;
+
+        }
+        return shows[currentShow-1]._simonAmountPerSequence.Length;
     }
 }

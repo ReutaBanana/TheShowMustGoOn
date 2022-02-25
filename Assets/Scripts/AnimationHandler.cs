@@ -17,7 +17,7 @@ public class AnimationHandler : MonoBehaviour
         
     }
 
-    private void NextAnimation(string condition)
+    public void NextAnimation(string condition)
     {
         //add failed animaton state
         animator.SetTrigger("Next");
