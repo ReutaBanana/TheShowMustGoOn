@@ -13,21 +13,33 @@ public class PowerUpSystem : MonoBehaviour
     private float[] moneyPerImprovistation = new float[] { 10, 50, 70 };
     [SerializeField] PlayerStats stats;
 
-    public event Action<float> onPricePerFlayerChange;
+    public event Action<string,float> onStatsChange;
 
     // Update is called once per frame
 
     public void BuyFlyers()
     {
-        if(stats.GetMoney()>=moneyPerFlayer[flayersPoints - 1])
+        if(flayersPoints<=3&&stats.GetMoney()> moneyPerFlayer[flayersPoints - 1])
         {
-            flayersPoints++;
             stats.addFamePoints(10);
-            onPricePerFlayerChange?.Invoke(moneyPerFlayer[flayersPoints - 1]);
+            stats.SpendMoney(moneyPerImprovistation[improvisationSkillPoints - 1]);
+            flayersPoints++;
+            onStatsChange?.Invoke("Flayer",moneyPerFlayer[flayersPoints - 1]);
         }
     }
     public void BuyCostumes()
     {
         
+    }
+    public void BuyImprovistionSkill()
+    {
+        if(improvisationSkillPoints<=3 && stats.GetMoney()> moneyPerImprovistation[improvisationSkillPoints - 1])
+        {
+            stats.AddHealthAmount();
+            stats.SpendMoney(moneyPerImprovistation[improvisationSkillPoints - 1]);
+            improvisationSkillPoints++;
+            onStatsChange?.Invoke("Improvistation", moneyPerImprovistation[improvisationSkillPoints - 1]);
+
+        }
     }
 }

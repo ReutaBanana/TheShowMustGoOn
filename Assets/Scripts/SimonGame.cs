@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class SimonGame : MonoBehaviour
 {
-    private float _speed = 1.2f;
-     private int _amount = 3;
+    private float _speed = 1;
+     private int _amount = 6;
 
     [SerializeField] private ButtonActivator[] colors;
     [SerializeField] private AnimationHandler animationHandler;

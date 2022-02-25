@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,9 @@ public class PlayerStats : MonoBehaviour
 {
     private float famePoints;
     private float currentMoney;
-    private float failPoints;
+    private int currentFailPoints;
+    private int currentHealthDecrease;
+    private int healthAmount=3;
 
     [SerializeField] private float ticketPrice =5;
     [SerializeField] private float famePerShow =6;
@@ -14,16 +17,31 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] SimonGame currentGame;
     [SerializeField] GameConstructor gameMananger;
 
+    public event Action<string, int> onHealthChange;
+
     void Start()
     {
         currentGame.onEndGameCondition += AddFailPoints;
         gameMananger.onShowEnd += EndOfTheShowCalculation;
     }
+    public void AddHealthAmount()
+    {
+        healthAmount += 1;
+        onHealthChange?.Invoke("Win", healthAmount);
+    }
 
+    private void Update()
+    {
+        
+    }
     private void AddFailPoints(string condition)
     {
         if (condition == "Lose")
-            failPoints += 1;
+        {
+            currentFailPoints += 1;
+            currentHealthDecrease += 1;
+            onHealthChange?.Invoke("Lose",currentHealthDecrease);
+        }
     }
 
     public void MoneyCalculation()
@@ -34,12 +52,12 @@ public class PlayerStats : MonoBehaviour
     }    
     public void FamePointsCalculation()
     {
-        if (failPoints == 0)
+        if (currentFailPoints == 0)
             famePoints += famePerShow;
         else
         {
             famePoints += famePerShow;
-            famePoints -= failPoints * 0.5f;
+            famePoints -= currentFailPoints * 0.5f;
 
         }
     }
@@ -47,7 +65,7 @@ public class PlayerStats : MonoBehaviour
     {
         FamePointsCalculation();
         MoneyCalculation();
-        failPoints = 0;
+        currentFailPoints = 0;
     }
     public float GetFamePoints()
     {
