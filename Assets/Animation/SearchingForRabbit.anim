@@ -23,7 +23,7 @@ AnimationClip:
       value: {fileID: -1119568982490178500, guid: cb6a250b477b88d4785599ce2a33a119, type: 3}
     - time: 0.2
       value: {fileID: -2373869937248571669, guid: cb6a250b477b88d4785599ce2a33a119, type: 3}
-    - time: 0.36666667
+    - time: 0.46666667
       value: {fileID: 8915042451276031794, guid: cb6a250b477b88d4785599ce2a33a119, type: 3}
     - time: 0.71666664
       value: {fileID: -7128192853043287105, guid: cb6a250b477b88d4785599ce2a33a119, type: 3}
