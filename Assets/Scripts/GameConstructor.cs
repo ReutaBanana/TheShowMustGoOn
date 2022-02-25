@@ -24,7 +24,7 @@ public class GameConstructor : MonoBehaviour
 
     public void ConstructSimonGames(string condition)
     {
-        if(currentShow<shows.Length)
+        if(currentShow<=shows.Length)
         {
             currentSequenceAmount = shows[currentShow]._simonAmountPerSequence.Length;
             if (currentSequenceNumber < currentSequenceAmount)

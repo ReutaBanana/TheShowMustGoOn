@@ -13,14 +13,25 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private Text _famePointsText;
     [SerializeField] private Text _moneyText;
 
+    [SerializeField] private Text _flayerPrice;
+    //[SerializeField] private Text _cosumePrice;
+    //[SerializeField] private Text _improvisationPrice;
+
     [SerializeField] private SimonGame game;
     [SerializeField] private GameConstructor gameMananger;
+
     [SerializeField] private PlayerStats stats;
+    [SerializeField] private PowerUpSystem powerUp;
     // Start is called before the first frame update
     void Start()
     {
         game.onEndGameCondition += ShowUI;
         gameMananger.onShowEnd += EndLevelScreenShow;
+        powerUp.onPricePerFlayerChange += changeFlayerPrice;
+    }
+    private void changeFlayerPrice(float price)
+    {
+        _flayerPrice.text = ("Flayer Price: " + price);
     }
     private void Update()
     {

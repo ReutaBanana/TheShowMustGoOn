@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   _simonSpeedPerSequence:
+  - 1.5
   - 1
-  - 1
-  _simonAmountPerSequence: 0100000003000000
+  - 1.3
+  _simonAmountPerSequence: 020000000300000005000000

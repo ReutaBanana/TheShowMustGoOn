@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class SimonGame : MonoBehaviour
 {
-     private float _speed = 1;
+    private float _speed = 1.2f;
      private int _amount = 3;
 
-    [SerializeField] private ColorChanger[] colors;
+    [SerializeField] private ButtonActivator[] colors;
+    [SerializeField] private AnimationHandler animationHandler;
 
     private float t;
     private int randomBtn;
@@ -23,6 +24,11 @@ public class SimonGame : MonoBehaviour
     public event Action<string> onEndGameCondition;
 
     public bool isFinished;
+    private bool isReady=true;
+    private void Start()
+    {
+        animationHandler.onEndofAnimation += ResetIsReady;
+    }
     public void SetSimonGame(float speed,int amount)
     {
         _speed = speed;
@@ -36,6 +42,10 @@ public class SimonGame : MonoBehaviour
         GenerateGame(_speed, _amount);
         if (_amount == 0)
         {
+            foreach (ButtonActivator button in colors)
+            {
+                button.SetToInteractable();
+            }
             simonSequenceArray = simonSequance.ToArray();
             playerInputArray = input.GetArray();
             if (playerInputArray.Length >= simonSequenceArray.Length)
@@ -51,6 +61,11 @@ public class SimonGame : MonoBehaviour
             isFinished = false;
     }
 
+    private void ResetIsReady()
+    {
+        isReady = true;
+        isFinished = false;
+    }
     private bool CheckIfWin()
     {
         playerInputArray = input.GetArray();
@@ -64,11 +79,14 @@ public class SimonGame : MonoBehaviour
 
     private void GenerateGame(float speed, int amount)
     {
-        if(!isFinished)
+        if(!isFinished&&isReady)
         {
+            foreach (ButtonActivator button in colors)
+            {
+                button.SetToNonInteractable();
+            }
 
-     
-        if (t < _speed)
+            if (t < _speed)
         {
             t += Time.deltaTime;
         }
@@ -85,7 +103,7 @@ public class SimonGame : MonoBehaviour
                 {
                     lastRandomBtn = randomBtn;
                     simonSequance.Add(randomBtn);
-                    colors[randomBtn].ChangeColor();
+                    colors[randomBtn].ActivateBtn();
                     _amount--;
                     break;
                 }
@@ -95,6 +113,11 @@ public class SimonGame : MonoBehaviour
                 }
             }
         }
+        }
+        else if(isFinished ==true)
+        {
+            isReady = false;
+           
         }
     }
 

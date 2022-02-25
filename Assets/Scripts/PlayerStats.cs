@@ -37,7 +37,11 @@ public class PlayerStats : MonoBehaviour
         if (failPoints == 0)
             famePoints += famePerShow;
         else
-            famePoints -= failPoints*0.5f;
+        {
+            famePoints += famePerShow;
+            famePoints -= failPoints * 0.5f;
+
+        }
     }
     public void EndOfTheShowCalculation()
     {
@@ -52,4 +56,13 @@ public class PlayerStats : MonoBehaviour
     {
         return currentMoney;
     }
+    public void SpendMoney(float amount)
+    {
+        currentMoney -= amount;
+    }
+    public void addFamePoints(float amount)
+    {
+        famePoints += amount;
+    }
+
 }
