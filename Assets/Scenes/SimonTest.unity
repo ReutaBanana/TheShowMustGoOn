@@ -5395,12 +5395,8 @@ MonoBehaviour:
   gameMananger: {fileID: 148356373}
   stats: {fileID: 148356376}
   powerUp: {fileID: 148356380}
-  audiance: {fileID: 533303062}
-  audianceReserve:
-  - {fileID: 21300000, guid: 8903e27c58240df46b31db971de8fd84, type: 3}
-  - {fileID: 21300000, guid: 71d6586f6a5d47f4fb1514e41ea9c527, type: 3}
-  - {fileID: 21300000, guid: 38acd70e3a919824797389c9c5418b86, type: 3}
-  - {fileID: 21300000, guid: fd766412b7eb2914c99f231a1a4395cf, type: 3}
+  audiance:
+  - {fileID: 0}
   hearts:
   - {fileID: 1620156599}
   - {fileID: 641855141}
@@ -5439,7 +5435,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9fe4062ab9b1f5f4d86564374ba25c2c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 22efc6585ad63f0459db696b2025793f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.53
   m_Pitch: 1
@@ -5550,7 +5546,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1f032f84a1b41554bb5ca77ef65810cf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fa3a799c474859649a4af4bdbf2492ea, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.58
   m_Pitch: 1
