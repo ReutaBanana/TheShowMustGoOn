@@ -372,12 +372,12 @@ GameObject:
   - component: {fileID: 44446343}
   - component: {fileID: 44446342}
   m_Layer: 0
-  m_Name: Particle System (2)
+  m_Name: Bunny
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &44446342
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -452,7 +452,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44446341}
   serializedVersion: 7
-  lengthInSec: 5
+  lengthInSec: 0.05
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -5216,7 +5216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44446341}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.0767452, y: 0.82366645, z: -6.6651044}
+  m_LocalPosition: {x: -0.36, y: -0.27, z: -6.67}
   m_LocalScale: {x: 0.28655759, y: 0.28655759, z: 0.28655759}
   m_Children: []
   m_Father: {fileID: 2146829317}
@@ -18850,7 +18850,8 @@ Transform:
   m_LocalRotation: {x: 6.984919e-10, y: -4.6566123e-10, z: 0.000000020592777, w: 1}
   m_LocalPosition: {x: -0, y: -1.73, z: 0}
   m_LocalScale: {x: 2.7413, y: 2.7413, z: 2.7413}
-  m_Children: []
+  m_Children:
+  - {fileID: 2146829317}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24196,12 +24197,12 @@ GameObject:
   - component: {fileID: 2018797740}
   - component: {fileID: 2018797739}
   m_Layer: 0
-  m_Name: Particle System (3)
+  m_Name: Disapperance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &2018797739
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -25381,7 +25382,7 @@ ParticleSystem:
       repeatInterval: 0.01
       probability: 1
     - serializedVersion: 2
-      time: 1.5
+      time: 1
       countCurve:
         serializedVersion: 2
         minMaxState: 0
@@ -29214,7 +29215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018797738}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.0767452, y: 0.82366645, z: -6.6651044}
+  m_LocalPosition: {x: -1.07, y: -0, z: -6.86}
   m_LocalScale: {x: 0.28655759, y: 0.28655759, z: 0.28655759}
   m_Children: []
   m_Father: {fileID: 2146829317}
@@ -29508,17 +29509,17 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2146829316}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0767452, y: -0.82366645, z: 6.6651044}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -6.984919e-10, y: 4.6566123e-10, z: -0.000000020592777, w: 1}
+  m_LocalPosition: {x: 0.3927863, y: 0.33062178, z: 2.4313662}
+  m_LocalScale: {x: 0.3647904, y: 0.3647904, z: 0.3647904}
   m_Children:
   - {fileID: 320729821}
   - {fileID: 1986539330}
   - {fileID: 44446344}
   - {fileID: 2018797741}
   - {fileID: 1232793798}
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 1815256483}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7530036834128978515
 PrefabInstance:
