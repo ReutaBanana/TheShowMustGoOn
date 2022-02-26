@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
     private int currentFailPoints;
     private int currentHealthDecrease;
     private int healthAmount=3;
+    private int currentHealth = 3;
 
     [SerializeField] private float ticketPrice =5;
     [SerializeField] private float famePerShow =6;
@@ -27,17 +28,22 @@ public class PlayerStats : MonoBehaviour
     public void AddHealthAmount()
     {
         healthAmount += 1;
+        currentHealth++;
         onHealthChange?.Invoke("Win", healthAmount);
     }
 
     private void Update()
     {
-        
+        if(currentHealth<=0)
+        {
+            Debug.Log("end game State");
+        }
     }
     private void AddFailPoints(string condition)
     {
         if (condition == "Lose")
         {
+            currentHealth--;
             currentFailPoints += 1;
             currentHealthDecrease += 1;
             onHealthChange?.Invoke("Lose",currentHealthDecrease);
