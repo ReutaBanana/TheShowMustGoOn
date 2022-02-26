@@ -5,20 +5,22 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    private float famePoints;
-    private float currentMoney;
+    private int famePoints;
+    private int currentMoney;
     private int currentFailPoints;
     private int currentHealthDecrease;
     private int healthAmount=3;
     private int currentHealth = 3;
+    private int famePointLevel=1;
 
-    [SerializeField] private float ticketPrice =5;
-    [SerializeField] private float famePerShow =6;
+    [SerializeField] private int ticketPrice = 5;
+    [SerializeField] private int famePerShow = 30;
 
     [SerializeField] SimonGame currentGame;
     [SerializeField] GameConstructor gameMananger;
 
     public event Action<string, int> onHealthChange;
+    public event Action<int> onFamePointSkillChange;
 
     void Start()
     {
@@ -38,6 +40,7 @@ public class PlayerStats : MonoBehaviour
         {
             Debug.Log("end game State");
         }
+
     }
     private void AddFailPoints(string condition)
     {
@@ -49,7 +52,11 @@ public class PlayerStats : MonoBehaviour
             onHealthChange?.Invoke("Lose",currentHealthDecrease);
         }
     }
-
+    public void checkfamePointSkill()
+    {
+        famePointLevel = famePoints / 30;
+        onFamePointSkillChange?.Invoke(famePointLevel);
+    }
     public void MoneyCalculation()
     {
         currentMoney+= famePoints * ticketPrice;
@@ -63,9 +70,9 @@ public class PlayerStats : MonoBehaviour
         else
         {
             famePoints += famePerShow;
-            famePoints -= currentFailPoints * 0.5f;
-
+            famePoints -= currentFailPoints * 2;
         }
+       
     }
     public void EndOfTheShowCalculation()
     {
@@ -73,20 +80,23 @@ public class PlayerStats : MonoBehaviour
         MoneyCalculation();
         currentFailPoints = 0;
     }
-    public float GetFamePoints()
+    public int GetFamePoints()
     {
         return famePoints;
-    }public float GetMoney()
+    }public int GetCurrentFameLevel()
+    {
+        return famePointLevel;
+    }public int GetMoney()
     {
         return currentMoney;
     }
-    public void SpendMoney(float amount)
+    public void SpendMoney(int amount)
     {
         currentMoney -= amount;
     }
-    public void addFamePoints(float amount)
+    public void addFamePoints(int amount)
     {
         famePoints += amount;
     }
-
+    
 }

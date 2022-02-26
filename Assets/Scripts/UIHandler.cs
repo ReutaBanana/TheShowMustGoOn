@@ -26,6 +26,8 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private PlayerStats stats;
     [SerializeField] private PowerUpSystem powerUp;
 
+    [SerializeField] private GameObject[] audiance;
+
     [SerializeField] private GameObject[] hearts;
     [SerializeField] private GameObject[] circleSquence;
     private int circlePoint = 0;
@@ -35,10 +37,18 @@ public class UIHandler : MonoBehaviour
     {
         game.onEndGameCondition += ShowUI;
         gameMananger.onShowEnd += EndLevelScreenShow;
-        powerUp.onStatsChange += ChangePriceUI;
+        powerUp.onPowerupChange += ChangePriceUI;
         stats.onHealthChange += HeartMangment;
+        stats.onFamePointSkillChange += FamePointLevelManagment;
         UpdateCircleUI();
     }
+
+    private void FamePointLevelManagment(int obj)
+    {
+        audiance[obj - 1].SetActive(false);
+        audiance[obj].SetActive(true);
+    }
+
     void HeartMangment(string condition, int arg)
     {
         if(condition=="Lose")
@@ -66,12 +76,15 @@ public class UIHandler : MonoBehaviour
     {
         _moneyText.text = ("Money Amount: " + stats.GetMoney());
         _famePointsText.text = ("Fame: " + stats.GetFamePoints());
+
     }
     private void EndLevelScreenShow()
     {
         StartCoroutine(EndGameUI());
 
-    } public void EndLevelScreenHide()
+
+    }
+    public void EndLevelScreenHide()
     {
         storeScreen.SetActive(false);
     }
@@ -116,7 +129,8 @@ public class UIHandler : MonoBehaviour
         _showNumberText.text=("Show " + showNumber);
         circlePoint = 0;
         UpdateCircleUI();
-       
+        stats.checkfamePointSkill();
+
 
     }
 }
