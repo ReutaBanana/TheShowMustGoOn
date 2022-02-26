@@ -7,7 +7,7 @@ public class SoundEffectMananger : MonoBehaviour
 {
     [SerializeField] private AudioSource finishedSuccesfuly;
     [SerializeField] private AudioSource finishedBadly;
-    [SerializeField] private AudioSource failed;
+    [SerializeField] private GameObject failed;
     [SerializeField] private SimonGame game;
     [SerializeField] private PlayerStats stats;
     // Start is called before the first frame update
@@ -39,7 +39,7 @@ public class SoundEffectMananger : MonoBehaviour
     {
         if (arg1 == "Lose Game")
         {
-            failed.Play();
+            failed.SetActive(true);
         }
     }
 }

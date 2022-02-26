@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour
     private int currentFailPoints;
     private int currentHealthDecrease;
     private int healthAmount=3;
-    private int currentHealth = 3;
+    private int currentHealth = 2;
     private int famePointLevel=1;
 
     [SerializeField] private int ticketPrice = 5;

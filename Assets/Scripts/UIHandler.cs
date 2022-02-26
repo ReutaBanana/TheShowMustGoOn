@@ -51,11 +51,11 @@ public class UIHandler : MonoBehaviour
 
     void HeartMangment(string condition, int arg)
     {
-        if(condition=="Lose")
+        if(condition=="Lose"&&arg>0)
         {
             hearts[arg-1].GetComponent<Image>(). color = Color.black;
         }
-        else
+        else if(arg > 0)
         {
             hearts[arg - 1].SetActive(true);
         }
