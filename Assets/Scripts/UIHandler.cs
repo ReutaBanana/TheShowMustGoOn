@@ -8,7 +8,8 @@ using TMPro;
 public class UIHandler : MonoBehaviour
 {
     [SerializeField] private GameObject winScreen;
-    [SerializeField] private GameObject loseScreen;
+    [SerializeField] private GameObject finishGameScreen;
+    [SerializeField] private GameObject loseGame;
     [SerializeField] private GameObject storeScreen;
 
     [SerializeField] private TextMeshProUGUI _famePointsText;
@@ -53,7 +54,7 @@ public class UIHandler : MonoBehaviour
 
     private void FinishGameUI()
     {
-        loseScreen.SetActive(true);
+        finishGameScreen.SetActive(true);
     }
 
     private void DisablePowerUpButton(string obj)
@@ -84,9 +85,14 @@ public class UIHandler : MonoBehaviour
         {
             hearts[arg-1].GetComponent<Image>(). color = Color.black;
         }
-        else if(arg > 0)
+        else if(arg > 0 && arg <= 5)
         {
             hearts[arg - 1].SetActive(true);
+        }
+
+        if(condition=="Lose Game")
+        {
+            loseGame.SetActive(true);
         }
     }
 
@@ -102,13 +108,21 @@ public class UIHandler : MonoBehaviour
             }
             else
             {
-                _flayerPrice.text = ("Flayer Price: " + price);
+                _flayerPrice.text = ("Flyer Price: " + price);
 
             }
         }
         else if(power == "Improvistation")
         {
-            _improvisationPrice.text=("Improvistation Skill Price: " + price);
+            if (price == 404)
+            {
+                _improvisationPrice.text = ("No more improvistation skill available...");
+
+            }
+            else
+            {
+                _improvisationPrice.text = ("Improvistation Skill Price: " + price);
+            }
         }
         
     }
@@ -159,7 +173,7 @@ public class UIHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         winScreen.SetActive(false);
-        loseScreen.SetActive(false);
+        finishGameScreen.SetActive(false);
 
     } IEnumerator EndGameUI()
     {

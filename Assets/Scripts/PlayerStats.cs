@@ -40,7 +40,6 @@ public class PlayerStats : MonoBehaviour
         if(currentHealth<=0)
         {
             onHealthChange?.Invoke("Lose Game", 0);
-            Debug.Log("end game State");
         }
         if(famePoints>100)
         {

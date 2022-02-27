@@ -47,6 +47,7 @@ public class PowerUpSystem : MonoBehaviour
     {
         if(improvisationSkillPoints<3 && stats.GetMoney()- moneyPerImprovistation[improvisationSkillPoints] >= 0)
         {
+            Debug.Log(moneyPerImprovistation[improvisationSkillPoints]);
             stats.AddHealthAmount();
             stats.SpendMoney(moneyPerImprovistation[improvisationSkillPoints]);
 
@@ -54,7 +55,7 @@ public class PowerUpSystem : MonoBehaviour
             if(improvisationSkillPoints==3)
             {
 
-                onPowerupChange?.Invoke("Improvistation", moneyPerImprovistation[2]);
+                onPowerupChange?.Invoke("Improvistation", 404);
 
             }
             else
@@ -74,7 +75,7 @@ public class PowerUpSystem : MonoBehaviour
     {
         if(improvisationSkillPoints==3)
         {
-            onDisableButtonEvent?.Invoke("Improvisation");
+            onDisableButtonEvent?.Invoke("Improviastion");
         }
         if(flayersPoints==3)
         {

@@ -8,6 +8,7 @@ public class SoundEffectMananger : MonoBehaviour
     [SerializeField] private AudioSource finishedSuccesfuly;
     [SerializeField] private AudioSource finishedBadly;
     [SerializeField] private GameObject failed;
+    [SerializeField] private GameObject win;
     [SerializeField] private SimonGame game;
     [SerializeField] private PlayerStats stats;
     // Start is called before the first frame update
@@ -15,6 +16,12 @@ public class SoundEffectMananger : MonoBehaviour
     {
         game.onEndGameCondition += YourTurnSFX;
         stats.onHealthChange += LoseGameSound;
+        stats.onWinGame += WinGameSound;
+    }
+
+    private void WinGameSound()
+    {
+        win.SetActive(true);
     }
 
     private void YourTurnSFX(string condition)
