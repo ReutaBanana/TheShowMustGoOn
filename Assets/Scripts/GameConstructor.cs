@@ -14,7 +14,9 @@ public class GameConstructor : MonoBehaviour
     private int currentSequenceAmount;
     private int currentSequenceNumber = 0;
 
+
     public event Action onShowEnd;
+    public event Action finishGame;
 
     void Start()
     {
@@ -43,7 +45,7 @@ public class GameConstructor : MonoBehaviour
         }
         else
         {
-            Debug.Log("no more games");
+            finishGame?.Invoke();
         }
     }
 
@@ -55,5 +57,14 @@ public class GameConstructor : MonoBehaviour
 
         }
         return shows[currentShow-1]._simonAmountPerSequence.Length;
+    }
+    public void BetweenLevelsShowConstructor()
+    {
+        StartCoroutine(ConsturctGameWithDelay());
+    }
+    IEnumerator ConsturctGameWithDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        ConstructSimonGames("random");
     }
 }

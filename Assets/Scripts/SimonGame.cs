@@ -45,16 +45,22 @@ public class SimonGame : MonoBehaviour
             foreach (ButtonActivator button in colors)
             {
                 button.SetToInteractable();
+
             }
             simonSequenceArray = simonSequance.ToArray();
             playerInputArray = input.GetArray();
             if (playerInputArray.Length >= simonSequenceArray.Length)
             {
+                foreach (ButtonActivator button in colors)
+                {
+                    button.SetToNonInteractable();
+                }
                 if (CheckIfWin() == true)
                     onEndGameCondition?.Invoke("Win");
                 else
                     onEndGameCondition?.Invoke("Lose");
                 isFinished = true;
+                
             }
         }
         else
@@ -81,10 +87,7 @@ public class SimonGame : MonoBehaviour
     {
         if(!isFinished&&isReady)
         {
-            foreach (ButtonActivator button in colors)
-            {
-                button.SetToNonInteractable();
-            }
+            
 
             if (t < _speed)
         {
@@ -93,7 +96,11 @@ public class SimonGame : MonoBehaviour
 
         else if (amount != 0)
         {
-            t = 0;
+                foreach (ButtonActivator button in colors)
+                {
+                    button.SetToNonInteractable();
+                }
+                t = 0;
 
             randomBtn = UnityEngine.Random.Range(0, 4);
 

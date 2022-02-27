@@ -11,14 +11,17 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private GameObject loseScreen;
     [SerializeField] private GameObject storeScreen;
 
-    [SerializeField] private Text _famePointsText;
-    [SerializeField] private Text _moneyText;
+    [SerializeField] private TextMeshProUGUI _famePointsText;
+    [SerializeField] private TextMeshProUGUI _moneyText;
     [SerializeField] private TextMeshProUGUI _showNumberText;
     private int showNumber = 1;
 
-    [SerializeField] private Text _flayerPrice;
+    [SerializeField] private Button FlyerButton;
+    [SerializeField] private Button ImprovisationButton;
+
+    [SerializeField] private TextMeshProUGUI _flayerPrice;
     //[SerializeField] private Text _cosumePrice;
-    [SerializeField] private Text _improvisationPrice;
+    [SerializeField] private TextMeshProUGUI _improvisationPrice;
 
     [SerializeField] private SimonGame game;
     [SerializeField] private GameConstructor gameMananger;
@@ -32,16 +35,42 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private GameObject[] circleSquence;
     private int circlePoint = 0;
     private int currentShowSequenceAmount;
+
+    
     // Start is called before the first frame update
     void Start()
     {
         game.onEndGameCondition += ShowUI;
         gameMananger.onShowEnd += EndLevelScreenShow;
         powerUp.onPowerupChange += ChangePriceUI;
+        powerUp.onDisableButtonEvent += DisablePowerUpButton;
         stats.onHealthChange += HeartMangment;
         stats.onFamePointSkillChange += FamePointLevelManagment;
+        stats.onWinGame += WinGameUI;
+        gameMananger.finishGame += FinishGameUI;
         UpdateCircleUI();
     }
+
+    private void FinishGameUI()
+    {
+        loseScreen.SetActive(true);
+    }
+
+    private void DisablePowerUpButton(string obj)
+    {
+        if (obj == "Flyer")
+        {
+            FlyerButton.interactable = false;
+        }
+        else if(obj=="Improviastion")
+        {
+            ImprovisationButton.interactable = false;
+        }
+    }
+
+    private void WinGameUI()
+    {
+        winScreen.SetActive(true);    }
 
     private void FamePointLevelManagment(int obj)
     {
@@ -51,7 +80,7 @@ public class UIHandler : MonoBehaviour
 
     void HeartMangment(string condition, int arg)
     {
-        if(condition=="Lose"&&arg>0)
+        if(condition=="Lose"&&arg>0&&arg<5)
         {
             hearts[arg-1].GetComponent<Image>(). color = Color.black;
         }
@@ -63,14 +92,25 @@ public class UIHandler : MonoBehaviour
 
     private void ChangePriceUI(string power, float price)
     {
+
         if (power == "Flayer")
         {
-            _flayerPrice.text = ("Flayer Price: " + price);
+            if(price==404)
+            {
+                _flayerPrice.text = ("No more flyers available...");
+
+            }
+            else
+            {
+                _flayerPrice.text = ("Flayer Price: " + price);
+
+            }
         }
         else if(power == "Improvistation")
         {
             _improvisationPrice.text=("Improvistation Skill Price: " + price);
         }
+        
     }
     private void Update()
     {

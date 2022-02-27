@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96f6bbe72e80644f84c8dc10fa46226, type: 3}
   m_Name: Level3
   m_EditorClassIdentifier: 
-  _simonSpeedPerSequence: 1.2
-  _simonAmountPerSequence: 03000000040000000200000004000000
+  _simonSpeedPerSequence: 0.35
+  _simonAmountPerSequence: 02000000030000000500000006000000

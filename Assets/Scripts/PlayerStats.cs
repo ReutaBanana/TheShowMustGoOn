@@ -13,7 +13,7 @@ public class PlayerStats : MonoBehaviour
     private int currentHealth = 2;
     private int famePointLevel=1;
 
-    [SerializeField] private int ticketPrice = 5;
+    [SerializeField] private int ticketPrice = 2;
     [SerializeField] private int famePerShow = 30;
 
     [SerializeField] SimonGame currentGame;
@@ -21,6 +21,7 @@ public class PlayerStats : MonoBehaviour
 
     public event Action<string, int> onHealthChange;
     public event Action<int> onFamePointSkillChange;
+    public event Action onWinGame;
 
     void Start()
     {
@@ -41,7 +42,10 @@ public class PlayerStats : MonoBehaviour
             onHealthChange?.Invoke("Lose Game", 0);
             Debug.Log("end game State");
         }
-
+        if(famePoints>100)
+        {
+            onWinGame?.Invoke();
+        }
     }
     private void AddFailPoints(string condition)
     {
